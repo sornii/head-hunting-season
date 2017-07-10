@@ -12,3 +12,6 @@ Com um sistema de craft desenvolvido, um mercado de troca será o meio mais fác
 
 ## Temporada
 As temporadas de caçada serão a base principal da competividade, cada temporada irá ter um tempo limite para a caçada de um certo monstro ao final da temporada quem tiver mais pontos ganhará recompensas.
+
+## Tecnologias a serem utilizadas
+JavaScript, Node.js, Meteor, Phaser
