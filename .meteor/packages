@@ -35,3 +35,7 @@ meteorhacks:kadira
 jparker:crypto-md5
 reactive-dict
 percolate:synced-cron
+accounts-base
+accounts-facebook
+accounts-password
+accounts-ui

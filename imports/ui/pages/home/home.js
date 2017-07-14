@@ -9,12 +9,11 @@ Template.home.onRendered(function homeOnRendered() {
 });
 
 Template.home.onCreated(function homeOnCreated() {
-
 });
 
 Template.home.helpers({
-    daysMessage() {
-        return "Hello World!";
-    }
+});
+
+Template.home.events({
 });
 
