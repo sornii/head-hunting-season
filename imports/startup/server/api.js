@@ -9,6 +9,11 @@
 
  */
 
+// Jogadores
+import "../../api/jogadores/jogadores"
+import "../../api/jogadores/methods"
+import "../../api/jogadores/server/publications"
+
 // Sociedade
 
 // Mercado
