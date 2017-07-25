@@ -2,7 +2,7 @@ import {Meteor} from "meteor/meteor";
 import {Jogadores} from "../jogadores";
 
 Meteor.publish('meuperfil', function () {
-  const jogador = Jogadores.findOne({userId: this.userId}).fetch();
+  const jogador = Jogadores.findOne({userId: this.userId});
 
   if (!jogador) {
     Jogadores.insert({userId: this.userId, inventario: []});

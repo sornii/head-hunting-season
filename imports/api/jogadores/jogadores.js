@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const Jogadores = new Mongo.Collection('Messages');
+export const Jogadores = new Mongo.Collection('Jogadores');
 
 Jogadores.deny({
   insert() { return true; },
@@ -18,13 +18,15 @@ const InventarioSchema = new SimpleSchema({
 const JogadorSchema = new SimpleSchema({
   userId: {
     type: String,
-    regEx: SimpleSchema.RegEx.Id,
+    regEx: SimpleSchema.RegEx.Id
   },
   dinheiro: {
     type: Number,
     defaultValue: 0
   },
-  inventario: [InventarioSchema]
+  inventario: {
+    type: [InventarioSchema]
+  }
 });
 
 Jogadores.helpers({
