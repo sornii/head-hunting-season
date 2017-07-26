@@ -17,6 +17,9 @@ import "../../api/jogadores/server/publications"
 // Sociedade
 
 // Mercado
+import "../../api/mercado/mercado"
+import "../../api/mercado/methods"
+import "../../api/mercado/server/publications"
 
 // Item
 
