@@ -5,21 +5,19 @@
         {{meuPerfil.dinheiro}}
     </p>
 
-    <p>
-        <!-- itens dele -->
-        <!-- item 1 [100][vender] -->
-        {{#with meuPerfil}}
-            {{#each inventario}}
+    {{#with meuPerfil}}
+        {{#each inventario}}
+            <p>
                 {{nome}} <input item="{{nome}}" type="number">
                 <button class="colocarVenda">Colocar à venda</button>
-            {{/each}}
-        {{/with}}
-    </p>
+            </p>
+        {{/each}}
+    {{/with}}
 
-    <p>
-        {{#each mercado}}
+    {{#each mercado}}
+        <p>
             <span class="nomeItem">{{nome}}</span> - {{preco}}
             <button class="comprar">Comprar</button>
-        {{/each}}
-    </p>
+        </p>
+    {{/each}}
 </template>
