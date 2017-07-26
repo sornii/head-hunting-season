@@ -1,6 +1,7 @@
 import {Template} from "meteor/templating";
 import {FlowRouter} from "meteor/kadira:flow-router";
 import {ActiveRoute} from "meteor/zimme:active-route";
+import {Tracker} from "meteor/tracker";
 
 import {Jogadores} from "../../../api/jogadores/jogadores";
 import {Mercado} from "../../../api/mercado/mercado";
@@ -16,7 +17,12 @@ Template.home.onRendered(function homeOnRendered() {
 });
 
 Template.home.onCreated(function homeOnCreated() {
-  this.subscribe('meuperfil');
+
+  Tracker.autorun(() => {
+    const userId = Meteor.userId();
+    this.subscribe('meuperfil');
+  });
+
   this.subscribe('mercado');
 });
 
@@ -33,7 +39,10 @@ Template.home.events({
   'click .colocarVenda' (event) {
     event.preventDefault();
 
-    colocarVenda(this.nome, $('input[item=\'' + this.nome + '\']').val());
+    const nome = this.nome;
+    const preco = Number($('input[item=\'' + this.nome + '\']').val());
+
+    colocarVenda.call({nome, preco});
   },
   'click .comprar' (event) {
     event.preventDefault();
