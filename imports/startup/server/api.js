@@ -14,6 +14,11 @@ import "../../api/jogadores/jogadores"
 import "../../api/jogadores/methods"
 import "../../api/jogadores/server/publications"
 
+// Inventarios
+import "../../api/inventarios/inventarios";
+import "../../api/inventarios/methods";
+import "../../api/inventarios/server/publications";
+
 // Sociedade
 
 // Mercado

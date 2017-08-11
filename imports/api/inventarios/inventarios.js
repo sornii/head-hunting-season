@@ -1,15 +1,19 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-export const Mercado = new Mongo.Collection('Mercado');
+export const Inventarios = new Mongo.Collection('Inventarios');
 
-Mercado.deny({
+Inventarios.deny({
   insert() { return true; },
   update() { return true; },
   remove() { return true; }
 });
 
-const MercadoSchema = new SimpleSchema({
+const InventarioSchema = new SimpleSchema({
+  jogadorId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
+  },
   nome: {
     type: String
   },
@@ -17,14 +21,10 @@ const MercadoSchema = new SimpleSchema({
     type: Number,
     defaultValue: 1,
     min: 1
-  },
-  preco: {
-    type: Number,
-    min: 1
   }
 });
 
-Mercado.helpers({
+Inventarios.helpers({
 });
 
-Mercado.attachSchema(MercadoSchema);
+Inventarios.attachSchema(InventarioSchema);
