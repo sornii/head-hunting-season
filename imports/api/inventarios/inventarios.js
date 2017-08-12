@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Itens } from '../itens/itens';
 
 export const Inventarios = new Mongo.Collection('Inventarios');
 
@@ -14,8 +15,9 @@ const InventarioSchema = new SimpleSchema({
     type: String,
     regEx: SimpleSchema.RegEx.Id
   },
-  nome: {
-    type: String
+  itemId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
   },
   quantidade: {
     type: Number,
@@ -25,6 +27,9 @@ const InventarioSchema = new SimpleSchema({
 });
 
 Inventarios.helpers({
+  item() {
+    return Itens.findOne({_id: this.itemId});
+  }
 });
 
 Inventarios.attachSchema(InventarioSchema);

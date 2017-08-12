@@ -10,7 +10,7 @@ import {colocarVenda, comprar} from "../../../api/mercado/methods";
 
 import "./home.html";
 
-import {$} from "meteor/jquery";
+import $ from "jquery";
 
 Template.home.onRendered(function homeOnRendered() {
 

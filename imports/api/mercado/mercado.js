@@ -1,5 +1,6 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Itens } from '../itens/itens';
 
 export const Mercado = new Mongo.Collection('Mercado');
 
@@ -10,8 +11,13 @@ Mercado.deny({
 });
 
 const MercadoSchema = new SimpleSchema({
-  nome: {
-    type: String
+  jogadorId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
+  },
+  itemId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
   },
   quantidade: {
     type: Number,
@@ -25,6 +31,15 @@ const MercadoSchema = new SimpleSchema({
 });
 
 Mercado.helpers({
+  item() {
+    return Itens.findOne({_id: this.itemId});
+  },
+  precoTotal(quantidade) {
+    if (quantidade) {
+      return quantidade * this.preco;
+    }
+    return this.quantidade * this.preco;
+  }
 });
 
 Mercado.attachSchema(MercadoSchema);

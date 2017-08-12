@@ -1,53 +1,78 @@
 import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Jogadores} from "../jogadores/jogadores";
+import {Inventarios} from "../inventarios/inventarios";
 import {Mercado} from "./mercado";
-import {_} from "underscore";
 
 export const colocarVenda = new ValidatedMethod({
   name: 'messages.colocarVenda',
   validate: new SimpleSchema({
-    nome: {type: String, max: 140},
-    preco: {type: Number, min: 1}
+    inventarioId: {type: String},
+    preco: {type: Number, min: 1},
+    quantidade: {type: Number, min: 1}
   }).validator(),
-  run({nome, preco}) {
+  run({inventarioId, preco, quantidade}) {
     if(!this.userId) {
       throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
     }
 
     const jogador = Jogadores.findOne({userId: this.userId});
+    const inventario = Inventarios.findOne({_id: inventarioId, jogadorId: jogador._id});
 
-    let inventarioIndex = _.findIndex(jogador.inventario, function (item) {
-      return item.nome === nome;
-    });
-
-    if (inventarioIndex !== -1) {
-      Jogadores.update({userId: this.userId}, {$pull : { inventario: { nome: {$eq: nome}}}});
-      Mercado.insert({nome, preco});
+    if(!inventario) {
+      throw new Meteor.Error('usuario.nao.item', 'Usuário não possui o item');
     }
+
+    let quantidadeRestante = inventario.quantidade - quantidade;
+    if (quantidadeRestante <= 0) {
+      throw new Meteor.Error('usuario.nao.quantidade', 'Usuário não possui a quantidade');
+    }
+
+    if (quantidadeRestante === 0) {
+      Inventarios.remove({_id: inventarioId});
+    } else {
+      Inventarios.update({_id: inventarioId}, {$inc: {quantidade: -1}});
+    }
+
+    Mercado.insert({quantidade, preco, jogadorId: jogador._id, itemId: inventario.itemId});
   }
 });
 
 export const comprar = new ValidatedMethod({
   name: 'messages.comprar',
   validate: new SimpleSchema({
-    nome: {type: String, max: 140}
+    mercadoId: {type: String},
+    quantidade: {type: Number, min: 1}
   }).validator(),
-  run({nome}) {
+  run({mercadoId, quantidade}) {
     if(!this.userId) {
       throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
     }
 
     const jogador = Jogadores.findOne({userId: this.userId});
+    const mercado = Mercado.findOne({_id: mercadoId});
 
-    const itemMercado = Mercado.findOne({nome});
+    const quantidadeRestante = mercado.quantidade - quantidade;
 
-    if(jogador.dinheiro < itemMercado.preco) {
+    if (quantidadeRestante <= 0) {
+      throw new Meteor.Error('mercado.nao.quantidade', 'Não está disponível essa quantidade de itens à venda');
+    }
+
+    if(jogador.dinheiro < mercado.precoTotal(quantidade)) {
       throw new Meteor.Error('usuario.nao.dinheiro', 'Usuário não tem dinheiro suficiente');
     }
 
-    jogador.inventario.push({nome});
+    if (quantidadeRestante === 0) {
+      Mercado.remove({_id: mercadoId});
+    } else {
+      Mercado.update({_id: mercadoId}, {$inc: {quantidade: (0 - quantidade)}});
+    }
 
-    Mercado.remove({nome});
+    const inventario = Inventarios.findOne({jogadorId: jogador._id, itemId: mercado.itemId});
+    if (inventario) {
+      Inventarios.update({jogadorId: jogador._id, itemId: mercado.itemId}, {$inc: {quantidade: quantidade}});
+    } else {
+      Inventarios.insert({jogadorId: jogador._id, itemId: mercado.itemId, quantidade});
+    }
   }
 });

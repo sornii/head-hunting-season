@@ -1,6 +1,7 @@
 import {Meteor} from "meteor/meteor";
 import {Jogadores} from "../jogadores";
 import {Inventarios} from "../../inventarios/inventarios";
+import {Itens} from "../../itens/itens";
 
 Meteor.publishComposite('meuperfil', function () {
   return {
@@ -20,7 +21,14 @@ Meteor.publishComposite('meuperfil', function () {
       {
         find(jogador) {
           return Inventarios.find({jogadorId: jogador._id});
-        }
+        },
+        children: [
+          {
+            find(inventario) {
+              return Itens.find({_id: inventario.itemId});
+            }
+          }
+        ]
       }
     ]
   };
