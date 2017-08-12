@@ -25,8 +25,7 @@ Template.compra.events({
     event.preventDefault();
 
     const mercadoId = this._id;
-    //const quantidade = Number(instance.quantidade.get());
-    const quantidade = 1;
+    const quantidade = Number(instance.quantidade.get());
 
     comprar.call({mercadoId, quantidade});
   }

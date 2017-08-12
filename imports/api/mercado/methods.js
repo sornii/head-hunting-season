@@ -23,7 +23,7 @@ export const colocarVenda = new ValidatedMethod({
       throw new Meteor.Error('usuario.nao.item', 'Usuário não possui o item');
     }
 
-    let quantidadeRestante = inventario.quantidade - quantidade;
+    const quantidadeRestante = inventario.quantidade - quantidade;
     if (quantidadeRestante < 0) {
       throw new Meteor.Error('usuario.nao.quantidade', 'Usuário não possui a quantidade');
     }
@@ -31,7 +31,7 @@ export const colocarVenda = new ValidatedMethod({
     if (quantidadeRestante === 0) {
       Inventarios.remove({_id: inventarioId});
     } else {
-      Inventarios.update({_id: inventarioId}, {$inc: {quantidade: -1}});
+      Inventarios.update({_id: inventarioId}, {$inc: {quantidade: (0 - quantidade)}});
     }
 
     Mercado.insert({quantidade, preco, jogadorId: jogador._id, itemId: inventario.itemId});
@@ -51,6 +51,10 @@ export const comprar = new ValidatedMethod({
 
     const jogador = Jogadores.findOne({userId: this.userId});
     const mercado = Mercado.findOne({_id: mercadoId});
+
+    if (!mercado) {
+      throw new Meteor.Error('mercado.nao.existe', 'O item selecionado já foi vendido ou não existe');
+    }
 
     const quantidadeRestante = mercado.quantidade - quantidade;
 
