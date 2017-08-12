@@ -10,9 +10,10 @@ Meteor.publishComposite('meuperfil', function () {
 
       if (!jogador) {
         const jogadorId = Jogadores.insert({userId: this.userId});
-        Inventarios.insert({jogadorId, nome: "Item X"});
-        Inventarios.insert({jogadorId, nome: "Item Y"});
-        Inventarios.insert({jogadorId, nome: "Item XY", quantidade: 2});
+
+        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item X"})._id});
+        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item Y"})._id});
+        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item XY"})._id, quantidade: 2});
       }
 
       return Jogadores.find({userId: this.userId});

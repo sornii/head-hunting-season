@@ -24,7 +24,7 @@ export const colocarVenda = new ValidatedMethod({
     }
 
     let quantidadeRestante = inventario.quantidade - quantidade;
-    if (quantidadeRestante <= 0) {
+    if (quantidadeRestante < 0) {
       throw new Meteor.Error('usuario.nao.quantidade', 'Usuário não possui a quantidade');
     }
 
@@ -54,11 +54,13 @@ export const comprar = new ValidatedMethod({
 
     const quantidadeRestante = mercado.quantidade - quantidade;
 
-    if (quantidadeRestante <= 0) {
+    if (quantidadeRestante < 0) {
       throw new Meteor.Error('mercado.nao.quantidade', 'Não está disponível essa quantidade de itens à venda');
     }
 
-    if(jogador.dinheiro < mercado.precoTotal(quantidade)) {
+    let precoTotal = mercado.precoTotal(quantidade);
+
+    if(jogador.dinheiro < precoTotal) {
       throw new Meteor.Error('usuario.nao.dinheiro', 'Usuário não tem dinheiro suficiente');
     }
 
@@ -74,5 +76,8 @@ export const comprar = new ValidatedMethod({
     } else {
       Inventarios.insert({jogadorId: jogador._id, itemId: mercado.itemId, quantidade});
     }
+
+    Jogadores.update({_id: jogador._id}, {$inc: {dinheiro: (0 - precoTotal)}});
+    Jogadores.update({_id: mercado.jogadorId}, {$inc: {dinheiro: precoTotal}});
   }
 });

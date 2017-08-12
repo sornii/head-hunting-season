@@ -10,7 +10,7 @@ Meteor.publishComposite('mercado', function () {
     children: [
       {
         find(mercado) {
-          return Itens.findOne({_id: mercado.itemId});
+          return Itens.find({_id: mercado.itemId});
         }
       }
     ]

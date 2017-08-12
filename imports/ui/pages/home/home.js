@@ -6,11 +6,10 @@ import {Tracker} from "meteor/tracker";
 import {Jogadores} from "../../../api/jogadores/jogadores";
 import {Mercado} from "../../../api/mercado/mercado";
 
-import {colocarVenda, comprar} from "../../../api/mercado/methods";
+import "../../components/venda/venda";
+import "../../components/compra/compra";
 
 import "./home.html";
-
-import $ from "jquery";
 
 Template.home.onRendered(function homeOnRendered() {
 
@@ -36,19 +35,4 @@ Template.home.helpers({
 });
 
 Template.home.events({
-  'click .colocarVenda' (event) {
-    event.preventDefault();
-
-    const nome = this.nome;
-    const preco = Number($('input[item=\'' + this.nome + '\']').val());
-
-    colocarVenda.call({nome, preco});
-  },
-  'click .comprar' (event) {
-    event.preventDefault();
-
-    console.log(this);
-
-    //comprar(nome);
-  }
 });

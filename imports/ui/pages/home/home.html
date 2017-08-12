@@ -8,25 +8,14 @@
     {{#with meuPerfil}}
         {{#each inventario}}
             <p>
-                {{nome}} <input item="{{nome}}" type="number">
-                <button class="colocarVenda">Colocar à venda</button>
+                {{> venda}}
             </p>
         {{/each}}
     {{/with}}
 
-    <hr>
-
-    {{#each itensVenda}}
-        <p>
-            {{nome}} <input value="{{preco}}" type="number">
-            <button class="colocarVenda">Colocar à venda</button>
-        </p>
-    {{/each}}
-
     {{#each mercado}}
         <p>
-            <span class="nomeItem">{{nome}}</span> - {{preco}}
-            <button class="comprar">Comprar</button>
+            {{> compra}}
         </p>
     {{/each}}
 </template>
