@@ -7,7 +7,7 @@ import {Mercado} from "./mercado";
 export const colocarVenda = new ValidatedMethod({
   name: 'messages.colocarVenda',
   validate: new SimpleSchema({
-    inventarioId: {type: String},
+    inventarioId: {type: String, regEx: SimpleSchema.RegEx.Id},
     preco: {type: Number, min: 1},
     quantidade: {type: Number, min: 1}
   }).validator(),
@@ -41,7 +41,7 @@ export const colocarVenda = new ValidatedMethod({
 export const comprar = new ValidatedMethod({
   name: 'messages.comprar',
   validate: new SimpleSchema({
-    mercadoId: {type: String},
+    mercadoId: {type: String, regEx: SimpleSchema.RegEx.Id},
     quantidade: {type: Number, min: 1}
   }).validator(),
   run({mercadoId, quantidade}) {

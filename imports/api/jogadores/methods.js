@@ -2,10 +2,12 @@ import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Jogadores} from "../jogadores/jogadores";
 
+const schema = Jogadores.simpleSchema().schema();
+
 export const trocarNome = new ValidatedMethod({
   name: 'jogadores.trocarNome',
   validate: new SimpleSchema({
-    nome: {type: String}
+    nome: schema.nome
   }).validator(),
   run({nome}) {
     if(!this.userId) {

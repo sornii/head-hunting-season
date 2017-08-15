@@ -20,7 +20,9 @@ const JogadorSchema = new SimpleSchema({
     defaultValue: true
   },
   nome: {
-    type: String
+    type: String,
+    min: 4,
+    max: 20
   },
   dinheiro: {
     type: Number,
