@@ -1,4 +1,23 @@
 <template name="venda">
-    {{item.nome}} ({{quantidade}}) <input class="preco" type="number"> <input class="quantidade" type="number">
-    <button>Colocar à venda</button>
+    <td>
+        {{item.nome}}
+    </td>
+    <td>
+        {{quantidade}}
+    </td>
+    <td>
+        <div class="ui input">
+            <input class="quantidade" type="number" onkeydown="return false" min="1" max="{{quantidade}}">
+        </div>
+    </td>
+    <td>
+        <div class="ui input">
+            <input class="ui input preco" type="number" min="1">
+        </div>
+    </td>
+    <td>
+        <div class="ui input">
+            <button class="ui button">Colocar à venda</button>
+        </div>
+    </td>
 </template>

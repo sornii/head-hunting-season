@@ -7,25 +7,25 @@ import {comprar} from '../../../api/mercado/methods';
 import "./compra.html";
 
 Template.compra.onCreated(function vendaOnCreated() {
-  this.quantidade = new ReactiveVar();
+  this.quantidadeComprar = new ReactiveVar();
 });
 
 Template.compra.helpers({
-  quantidade() {
+  quantidadeComprar() {
     let instance = Template.instance();
-    return instance.quantidade.get();
+    return instance.quantidadeComprar.get();
   }
 });
 
 Template.compra.events({
   'change input': function (event, instance) {
-    instance.quantidade.set(event.target.value);
+    instance.quantidadeComprar.set(event.target.value);
   },
   'click button': function (event, instance) {
     event.preventDefault();
 
     const mercadoId = this._id;
-    const quantidade = Number(instance.quantidade.get());
+    const quantidade = Number(instance.quantidadeComprar.get());
 
     comprar.call({mercadoId, quantidade});
   }

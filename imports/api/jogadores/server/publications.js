@@ -9,7 +9,9 @@ Meteor.publishComposite('meuperfil', function () {
       const jogador = Jogadores.findOne({userId: this.userId});
 
       if (!jogador) {
-        const jogadorId = Jogadores.insert({userId: this.userId});
+        const user = Meteor.users.findOne({_id: this.userId});
+
+        const jogadorId = Jogadores.insert({userId: this.userId, nome: user.username});
 
         Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item X"})._id});
         Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item Y"})._id});

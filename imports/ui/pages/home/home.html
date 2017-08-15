@@ -1,21 +1,61 @@
 <template name="home">
     {{>loginButtons}}
 
+    <h4>Perfil</h4>
+
     <p>
-        {{meuPerfil.dinheiro}}
+        Meu nome: {{meuPerfil.nome}}
+    </p>
+    {{#if meuPerfil.redefinirNome}}
+        <div class="ui input">
+            <input class="meuNome" type="text" value="{{meuPerfil.nome}}">
+        </div>
+        <button class="mudarNome ui button">Mudar nome</button>
+    {{/if}}
+    <p>
+        Meu dinheiro: {{meuPerfil.dinheiro}}
     </p>
 
-    {{#with meuPerfil}}
-        {{#each inventario}}
-            <p>
-                {{> venda}}
-            </p>
-        {{/each}}
-    {{/with}}
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Qtd. Disponível</th>
+            <th>Qtd. Vender</th>
+            <th>Preço</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#with meuPerfil}}
+            {{#each inventario}}
+                <tr>
+                    {{> venda}}
+                </tr>
+            {{/each}}
+        {{/with}}
+        </tbody>
+    </table>
 
-    {{#each mercado}}
-        <p>
-            {{> compra}}
-        </p>
-    {{/each}}
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Vendedor</th>
+            <th>Item</th>
+            <th>Qtd. Disponível</th>
+            <th>Qtd. Comprar</th>
+            <th>Preço Un.</th>
+            <th>Preço Total</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each mercado}}
+            <tr>
+                {{> compra}}
+            </tr>
+        {{/each}}
+        </tbody>
+    </table>
+
 </template>

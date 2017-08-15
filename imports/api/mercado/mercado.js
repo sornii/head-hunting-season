@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Itens } from '../itens/itens';
+import { Jogadores } from '../jogadores/jogadores';
 
 export const Mercado = new Mongo.Collection('Mercado');
 
@@ -31,6 +32,9 @@ const MercadoSchema = new SimpleSchema({
 });
 
 Mercado.helpers({
+  jogador() {
+    return Jogadores.findOne({_id: this.jogadorId});
+  },
   item() {
     return Itens.findOne({_id: this.itemId});
   },

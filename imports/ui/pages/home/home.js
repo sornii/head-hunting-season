@@ -4,6 +4,7 @@ import {ActiveRoute} from "meteor/zimme:active-route";
 import {Tracker} from "meteor/tracker";
 
 import {Jogadores} from "../../../api/jogadores/jogadores";
+import {trocarNome} from "../../../api/jogadores/methods";
 import {Mercado} from "../../../api/mercado/mercado";
 
 import "../../components/venda/venda";
@@ -16,6 +17,8 @@ Template.home.onRendered(function homeOnRendered() {
 });
 
 Template.home.onCreated(function homeOnCreated() {
+
+  this.nomeJogador = "";
 
   Tracker.autorun(() => {
     const userId = Meteor.userId();
@@ -35,4 +38,11 @@ Template.home.helpers({
 });
 
 Template.home.events({
+  'change .meuNome': function (event, instance) {
+    instance.nomeJogador = event.target.value;
+  },
+  'click .mudarNome': function (event, instance) {
+    event.preventDefault();
+    trocarNome.call({nome: instance.nomeJogador});
+  }
 });

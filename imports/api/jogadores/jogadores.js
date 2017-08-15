@@ -15,6 +15,13 @@ const JogadorSchema = new SimpleSchema({
     type: String,
     regEx: SimpleSchema.RegEx.Id
   },
+  redefinirNome: {
+    type: Boolean,
+    defaultValue: true
+  },
+  nome: {
+    type: String
+  },
   dinheiro: {
     type: Number,
     defaultValue: 50,

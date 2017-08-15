@@ -1,4 +1,25 @@
 <template name="compra">
-    {{item.nome}} - {{preco}} <input type="number">
-    <button>Comprar</button>
+    <td>
+        {{jogador.nome}}
+    </td>
+    <td>
+        {{item.nome}}
+    </td>
+    <td>
+        {{quantidade}}
+    </td>
+    <td>
+        <div class="ui input">
+            <input value="{{quantidadeComprar}}" type="number" onkeydown="return false" min="1" max="{{quantidade}}">
+        </div>
+    </td>
+    <td>
+        {{preco}}
+    </td>
+    <td>
+        {{precoTotal quantidadeComprar}}
+    </td>
+    <td>
+        <button class="ui button">Comprar</button>
+    </td>
 </template>
