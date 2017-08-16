@@ -18,7 +18,7 @@ Template.compra.helpers({
 });
 
 Template.compra.events({
-  'change input': function (event, instance) {
+  'change input, keyup input': function (event, instance) {
     instance.quantidadeComprar.set(event.target.value);
   },
   'click button': function (event, instance) {
