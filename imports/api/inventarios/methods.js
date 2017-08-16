@@ -1,4 +1,4 @@
-import Inventarios from './inventarios';
+import {Inventarios} from './inventarios';
 
 export const adicionarInventario = function (jogadorId, itemId, quantidade) {
   const inventario = Inventarios.findOne({jogadorId, itemId});
