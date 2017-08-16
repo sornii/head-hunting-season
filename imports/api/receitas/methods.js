@@ -2,6 +2,7 @@ import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Jogadores} from "../jogadores/jogadores";
 import {Inventarios} from "../inventarios/inventarios";
+import {adicionarInventario} from "../inventarios/methods";
 import {Receitas} from "./receitas";
 
 export const fabricarItem = new ValidatedMethod({
@@ -43,11 +44,6 @@ export const fabricarItem = new ValidatedMethod({
       }
     });
 
-    const inventario = Inventarios.findOne({jogadorId: jogador._id, itemId: receita.itemId});
-    if (inventario) {
-      Inventarios.update({jogadorId: jogador._id, itemId: receita.itemId}, {$inc: {quantidade: quantidade}});
-    } else {
-      Inventarios.insert({jogadorId: jogador._id, itemId: receita.itemId, quantidade});
-    }
+    adicionarInventario(jogador._id, receita.itemId, quantidade);
   }
 });

@@ -2,6 +2,7 @@ import {ValidatedMethod} from "meteor/mdg:validated-method";
 import {SimpleSchema} from "meteor/aldeed:simple-schema";
 import {Jogadores} from "../jogadores/jogadores";
 import {Inventarios} from "../inventarios/inventarios";
+import {adicionarInventario} from "../inventarios/methods";
 import {Mercado} from "./mercado";
 
 export const colocarVenda = new ValidatedMethod({
@@ -12,14 +13,14 @@ export const colocarVenda = new ValidatedMethod({
     quantidade: {type: Number, min: 1}
   }).validator(),
   run({inventarioId, preco, quantidade}) {
-    if(!this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
     }
 
     const jogador = Jogadores.findOne({userId: this.userId});
     const inventario = Inventarios.findOne({_id: inventarioId, jogadorId: jogador._id});
 
-    if(!inventario) {
+    if (!inventario) {
       throw new Meteor.Error('usuario.nao.item', 'Usuário não possui o item');
     }
 
@@ -45,7 +46,7 @@ export const comprar = new ValidatedMethod({
     quantidade: {type: Number, min: 1}
   }).validator(),
   run({mercadoId, quantidade}) {
-    if(!this.userId) {
+    if (!this.userId) {
       throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
     }
 
@@ -64,7 +65,7 @@ export const comprar = new ValidatedMethod({
 
     let precoTotal = mercado.precoTotal(quantidade);
 
-    if(jogador.dinheiro < precoTotal) {
+    if (jogador.dinheiro < precoTotal) {
       throw new Meteor.Error('usuario.nao.dinheiro', 'Usuário não tem dinheiro suficiente');
     }
 
@@ -74,12 +75,7 @@ export const comprar = new ValidatedMethod({
       Mercado.update({_id: mercadoId}, {$inc: {quantidade: (0 - quantidade)}});
     }
 
-    const inventario = Inventarios.findOne({jogadorId: jogador._id, itemId: mercado.itemId});
-    if (inventario) {
-      Inventarios.update({jogadorId: jogador._id, itemId: mercado.itemId}, {$inc: {quantidade: quantidade}});
-    } else {
-      Inventarios.insert({jogadorId: jogador._id, itemId: mercado.itemId, quantidade});
-    }
+    adicionarInventario(jogador._id, mercado.itemId, quantidade);
 
     Jogadores.update({_id: jogador._id}, {$inc: {dinheiro: (0 - precoTotal)}});
     Jogadores.update({_id: mercado.jogadorId}, {$inc: {dinheiro: precoTotal}});
