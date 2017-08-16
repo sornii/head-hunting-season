@@ -1,0 +1,15 @@
+<template name="receita">
+    <tr>
+        <td>
+            {{item.nome}}
+        </td>
+        <td>
+            {{#each itensReceita}}
+                {{quantidade}}x {{item.nome}}<br/>
+            {{/each}}
+        </td>
+        <td>
+            <button class="ui button">Fabricar</button>
+        </td>
+    </tr>
+</template>

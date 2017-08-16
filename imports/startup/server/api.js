@@ -27,4 +27,12 @@ import "../../api/mercado/methods"
 import "../../api/mercado/server/publications"
 
 // Item
+import "../../api/itens/itens";
+import "../../api/itens/methods";
+import "../../api/itens/server/publications";
+
+// Receitas
+import "../../api/receitas/receitas";
+import "../../api/receitas/methods";
+import "../../api/receitas/server/publications";
 

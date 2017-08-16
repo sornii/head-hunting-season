@@ -16,6 +16,8 @@
         Meu dinheiro: {{meuPerfil.dinheiro}}
     </p>
 
+    <h4>Inventário</h4>
+
     <table class="ui celled table">
         <thead>
         <tr>
@@ -36,6 +38,25 @@
         {{/with}}
         </tbody>
     </table>
+
+    <h4>Receitas</h4>
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Item</th>
+            <th>Itens</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each receitas}}
+            {{> receita}}
+        {{/each}}
+        </tbody>
+    </table>
+
+    <h4>Mercado</h4>
 
     <table class="ui celled table">
         <thead>

@@ -6,9 +6,11 @@ import {Tracker} from "meteor/tracker";
 import {Jogadores} from "../../../api/jogadores/jogadores";
 import {trocarNome} from "../../../api/jogadores/methods";
 import {Mercado} from "../../../api/mercado/mercado";
+import {Receitas} from "../../../api/receitas/receitas";
 
 import "../../components/venda/venda";
 import "../../components/compra/compra";
+import "../../components/receita/receita";
 
 import "./home.html";
 
@@ -26,6 +28,7 @@ Template.home.onCreated(function homeOnCreated() {
   });
 
   this.subscribe('mercado');
+  this.subscribe('receitas');
 });
 
 Template.home.helpers({
@@ -34,6 +37,9 @@ Template.home.helpers({
   },
   mercado() {
     return Mercado.find({});
+  },
+  receitas() {
+    return Receitas.find({});
   }
 });
 
