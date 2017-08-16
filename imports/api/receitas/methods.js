@@ -1,9 +1,9 @@
-import {ValidatedMethod} from "meteor/mdg:validated-method";
-import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {Jogadores} from "../jogadores/jogadores";
-import {Inventarios} from "../inventarios/inventarios";
-import {adicionarInventario} from "../inventarios/methods";
-import {Receitas} from "./receitas";
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Jogadores } from '../jogadores/jogadores';
+import { Inventarios } from '../inventarios/inventarios';
+import { adicionarInventario } from '../inventarios/methods';
+import { Receitas } from './receitas';
 
 export const fabricarItem = new ValidatedMethod({
   name: 'receitas.fabricarItem',
@@ -28,7 +28,11 @@ export const fabricarItem = new ValidatedMethod({
 
     receita.itens.forEach(itemReceita => {
       itemReceita.quantidade = itemReceita.quantidade * quantidade;
-      const inventario = Inventarios.findOne({itemId: itemReceita.itemId, jogadorId: jogador._id, quantidade: {$gte: itemReceita.quantidade}});
+      const inventario = Inventarios.findOne({
+        itemId: itemReceita.itemId,
+        jogadorId: jogador._id,
+        quantidade: {$gte: itemReceita.quantidade}
+      });
       if (!inventario) {
         throw new Meteor.Error('usuario.nao.itens', 'Usuário não possui os itens para a receita');
       }

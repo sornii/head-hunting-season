@@ -1,7 +1,7 @@
-import {Meteor} from "meteor/meteor";
-import {Jogadores} from "../jogadores";
-import {Inventarios} from "../../inventarios/inventarios";
-import {Itens} from "../../itens/itens";
+import { Meteor } from 'meteor/meteor';
+import { Jogadores } from '../jogadores';
+import { Inventarios } from '../../inventarios/inventarios';
+import { Itens } from '../../itens/itens';
 
 Meteor.publishComposite('meuperfil', function () {
   return {
@@ -13,9 +13,9 @@ Meteor.publishComposite('meuperfil', function () {
 
         const jogadorId = Jogadores.insert({userId: this.userId, nome: user.username});
 
-        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item X"})._id});
-        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item Y"})._id});
-        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: "Item XY"})._id, quantidade: 2});
+        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: 'Item X'})._id});
+        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: 'Item Y'})._id});
+        Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: 'Item XY'})._id, quantidade: 2});
       }
 
       return Jogadores.find({userId: this.userId});

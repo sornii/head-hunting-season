@@ -1,11 +1,11 @@
-import {Template} from "meteor/templating";
-import {FlowRouter} from "meteor/kadira:flow-router";
-import {ActiveRoute} from "meteor/zimme:active-route";
-import {ReactiveVar} from 'meteor/reactive-var';
+import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { ActiveRoute } from 'meteor/zimme:active-route';
+import { ReactiveVar } from 'meteor/reactive-var';
 
-import {colocarVenda} from '../../../api/mercado/methods';
+import { colocarVenda } from '../../../api/mercado/methods';
 
-import "./venda.html";
+import './venda.html';
 
 Template.venda.onCreated(function vendaOnCreated() {
   this.preco = new ReactiveVar();

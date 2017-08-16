@@ -1,7 +1,7 @@
-import {Meteor} from "meteor/meteor";
-import {Mercado} from "../mercado";
-import {Itens} from "../../itens/itens";
-import {Jogadores} from "../../jogadores/jogadores";
+import { Meteor } from 'meteor/meteor';
+import { Mercado } from '../mercado';
+import { Itens } from '../../itens/itens';
+import { Jogadores } from '../../jogadores/jogadores';
 
 Meteor.publishComposite('mercado', function () {
   return {
@@ -20,5 +20,5 @@ Meteor.publishComposite('mercado', function () {
         }
       }
     ]
-  }
+  };
 });

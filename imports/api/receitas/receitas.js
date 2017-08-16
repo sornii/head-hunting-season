@@ -2,7 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { Itens } from '../itens/itens';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
-import {_} from 'underscore';
+import { _ } from 'underscore';
 
 export const Receitas = new Mongo.Collection('Receitas');
 

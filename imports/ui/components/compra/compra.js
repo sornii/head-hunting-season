@@ -1,10 +1,10 @@
-import {Template} from "meteor/templating";
-import {FlowRouter} from "meteor/kadira:flow-router";
-import {ActiveRoute} from "meteor/zimme:active-route";
-import {ReactiveVar} from 'meteor/reactive-var';
-import {comprar} from '../../../api/mercado/methods';
+import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { ActiveRoute } from 'meteor/zimme:active-route';
+import { ReactiveVar } from 'meteor/reactive-var';
+import { comprar } from '../../../api/mercado/methods';
 
-import "./compra.html";
+import './compra.html';
 
 Template.compra.onCreated(function vendaOnCreated() {
   this.quantidadeComprar = new ReactiveVar();

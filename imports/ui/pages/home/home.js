@@ -1,18 +1,18 @@
-import {Template} from "meteor/templating";
-import {FlowRouter} from "meteor/kadira:flow-router";
-import {ActiveRoute} from "meteor/zimme:active-route";
-import {Tracker} from "meteor/tracker";
+import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
+import { ActiveRoute } from 'meteor/zimme:active-route';
+import { Tracker } from 'meteor/tracker';
 
-import {Jogadores} from "../../../api/jogadores/jogadores";
-import {trocarNome} from "../../../api/jogadores/methods";
-import {Mercado} from "../../../api/mercado/mercado";
-import {Receitas} from "../../../api/receitas/receitas";
+import { Jogadores } from '../../../api/jogadores/jogadores';
+import { trocarNome } from '../../../api/jogadores/methods';
+import { Mercado } from '../../../api/mercado/mercado';
+import { Receitas } from '../../../api/receitas/receitas';
 
-import "../../components/venda/venda";
-import "../../components/compra/compra";
-import "../../components/receita/receita";
+import '../../components/venda/venda';
+import '../../components/compra/compra';
+import '../../components/receita/receita';
 
-import "./home.html";
+import './home.html';
 
 Template.home.onRendered(function homeOnRendered() {
 
@@ -20,7 +20,7 @@ Template.home.onRendered(function homeOnRendered() {
 
 Template.home.onCreated(function homeOnCreated() {
 
-  this.nomeJogador = "";
+  this.nomeJogador = '';
 
   Tracker.autorun(() => {
     const userId = Meteor.userId();

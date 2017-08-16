@@ -38,7 +38,7 @@ Mercado.helpers({
   item() {
     return Itens.findOne({_id: this.itemId});
   },
-  precoTotal: function(quantidade) {
+  precoTotal: function (quantidade) {
     if (quantidade) {
       return quantidade * this.preco;
     }

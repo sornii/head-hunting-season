@@ -1,9 +1,9 @@
-import {ValidatedMethod} from "meteor/mdg:validated-method";
-import {SimpleSchema} from "meteor/aldeed:simple-schema";
-import {Jogadores} from "../jogadores/jogadores";
-import {Inventarios} from "../inventarios/inventarios";
-import {adicionarInventario} from "../inventarios/methods";
-import {Mercado} from "./mercado";
+import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Jogadores } from '../jogadores/jogadores';
+import { Inventarios } from '../inventarios/inventarios';
+import { adicionarInventario } from '../inventarios/methods';
+import { Mercado } from './mercado';
 
 export const colocarVenda = new ValidatedMethod({
   name: 'messages.colocarVenda',

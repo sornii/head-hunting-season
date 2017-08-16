@@ -1,7 +1,7 @@
-import {Meteor} from "meteor/meteor";
-import {Receitas} from "../receitas";
-import {Itens} from "../../itens/itens";
-import {_} from "underscore";
+import { Meteor } from 'meteor/meteor';
+import { Receitas } from '../receitas';
+import { Itens } from '../../itens/itens';
+import { _ } from 'underscore';
 
 Meteor.publishComposite('receitas', function () {
   return {
@@ -15,5 +15,5 @@ Meteor.publishComposite('receitas', function () {
         }
       }
     ]
-  }
+  };
 });
