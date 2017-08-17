@@ -26,7 +26,7 @@ export const fabricarItem = new ValidatedMethod({
 
     const itensReceitaInventario = [];
 
-    receita.itens.forEach(itemReceita => {
+    receita._itens.forEach(itemReceita => {
       itemReceita.quantidade = itemReceita.quantidade * quantidade;
       const inventario = Inventarios.findOne({
         itemId: itemReceita.itemId,

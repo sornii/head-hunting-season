@@ -1,6 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import { Itens } from '../itens/itens';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+import Profissoes from '../profissoes/profissoes';
+import { Itens } from '../itens/itens';
 
 import { _ } from 'underscore';
 
@@ -24,25 +26,34 @@ const ReceitaItemSchema = new SimpleSchema({
 });
 
 const ReceitaSchema = new SimpleSchema({
+  _profissao: {
+    type: String
+  },
   itemId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id
   },
-  itens: {
+  _itens: {
     type: [ReceitaItemSchema],
     minCount: 1
+  },
+  segundos: {
+    type: Number
   }
 });
 
 Receitas.helpers({
+  profissao() {
+    return Profissoes[this._profissao];
+  },
   item() {
     return Itens.findOne({_id: this.itemId});
   },
-  itensReceita() {
-    return _.map(this.itens, item => ({item: Itens.findOne({_id: item.itemId}), quantidade: item.quantidade}));
-  },
-  quantidadeItens() {
-    return this.itens.length;
+  itens() {
+    return _.map(this._itens, item => ({
+      item: Itens.findOne({_id: item.itemId}),
+      quantidade: item.quantidade
+    }));
   }
 });
 
