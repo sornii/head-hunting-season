@@ -24,8 +24,6 @@ semantic:ui
 flemay:less-autoprefixer
 mdg:validated-method
 mdg:validation-error
-momentjs:moment
-rzymek:moment-locale-pt-br
 dburles:collection-helpers
 reywood:publish-composite
 tap:i18n

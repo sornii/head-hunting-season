@@ -11,7 +11,12 @@ Meteor.publishComposite('receitas', function () {
     children: [
       {
         find(receita) {
-          return Itens.find({_id: {$in: _.map(receita.itens, item => item.itemId)}});
+          return Itens.find({_id: {$in: _.map(receita._itens, item => item.itemId)}});
+        }
+      },
+      {
+        find(receita) {
+          return Itens.find({_id: receita.itemId});
         }
       }
     ]

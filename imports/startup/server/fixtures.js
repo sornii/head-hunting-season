@@ -14,7 +14,9 @@ Meteor.startup(() => {
     const itemY = Itens.findOne({nome: 'Item Y'});
     Receitas.insert({
       itemId: itemXy._id,
-      itens: [{itemId: itemX._id, quantidade: 1}, {itemId: itemY._id, quantidade: 1}]
+      _itens: [{itemId: itemX._id, quantidade: 1}, {itemId: itemY._id, quantidade: 1}],
+      _profissao: 'alquimista',
+      segundos: 20
     });
   }
   SyncedCron.start();

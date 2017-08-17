@@ -1,6 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
+import { PointSchema } from '../geolocations/point';
 import { Criaturas } from '../criaturas/criaturas';
 
 import { _ } from 'underscore';
@@ -31,6 +32,9 @@ const BandoSchema = new SimpleSchema({
   _criaturas: {
     type: [BandoCriaturaSchema],
     minCount: 1
+  },
+  localizacao: {
+    type: PointSchema
   }
 });
 

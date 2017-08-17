@@ -1,5 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+import { PointSchema } from '../geolocations/point';
 import { Inventarios } from '../inventarios/inventarios';
 import { Homens } from '../homens/homens';
 
@@ -29,6 +31,9 @@ const JogadorSchema = new SimpleSchema({
     type: Number,
     defaultValue: 50,
     min: 0
+  },
+  localizacao: {
+    type: PointSchema
   }
 });
 
