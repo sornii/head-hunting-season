@@ -41,3 +41,6 @@ import '../../api/bandos/bandos';
 import '../../api/bandos/methods';
 import '../../api/bandos/server/publications';
 
+// Cidades
+import '../../api/cidades/cidades';
+import '../../api/cidades/server/publications';

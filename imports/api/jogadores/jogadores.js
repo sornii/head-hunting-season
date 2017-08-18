@@ -4,6 +4,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { PointSchema } from '../geolocations/point';
 import { Inventarios } from '../inventarios/inventarios';
 import { Homens } from '../homens/homens';
+import { Cidades } from '../cidades/cidades';
 
 export const Jogadores = new Mongo.Collection('Jogadores');
 
@@ -34,6 +35,10 @@ const JogadorSchema = new SimpleSchema({
   },
   localizacao: {
     type: PointSchema
+  },
+  cidadeId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
   }
 });
 
@@ -43,6 +48,9 @@ Jogadores.helpers({
   },
   homens() {
     return Homens.find({jogadorId: this._id});
+  },
+  cidade() {
+    return Cidades.findOne({_id: this.cidadeId});
   }
 });
 

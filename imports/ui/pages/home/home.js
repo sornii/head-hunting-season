@@ -11,11 +11,13 @@ import { trocarNome } from '../../../api/jogadores/methods';
 import { Mercado } from '../../../api/mercado/mercado';
 import { Receitas } from '../../../api/receitas/receitas';
 import { Bandos } from '../../../api/bandos/bandos';
+import { Cidades } from '../../../api/cidades/cidades';
 
 import '../../components/venda/venda';
 import '../../components/compra/compra';
 import '../../components/receita/receita';
 import '../../components/bando/bando';
+import '../../components/cidade/cidade';
 
 import './home.html';
 
@@ -37,6 +39,7 @@ Template.home.onCreated(function homeOnCreated() {
   this.subscribe('mercado');
   this.subscribe('receitas');
   this.subscribe('bandos.proximos');
+  this.subscribe('cidades.proximos');
 });
 
 Template.home.helpers({
@@ -51,6 +54,9 @@ Template.home.helpers({
   },
   bandos() {
     return Bandos.find({});
+  },
+  cidades() {
+    return Cidades.find({});
   },
   idGerado() {
     return Template.instance().idGerado.get();

@@ -43,6 +43,23 @@
         </tbody>
     </table>
 
+    <h4>Cidades</h4>
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Distância</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each cidades}}
+            {{> cidade}}
+        {{/each}}
+        </tbody>
+    </table>
+
     <h4>Bandos</h4>
 
     <table class="ui celled table">
