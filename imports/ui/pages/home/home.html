@@ -1,6 +1,10 @@
 <template name="home">
     {{>loginButtons}}
 
+    <h4>Gerador de Id Maroto</h4>
+    <p>{{idGerado}}</p>
+    <button class="ui button gerador-id">Gerar Id</button>
+
     <h4>Perfil</h4>
 
     <p>
@@ -39,6 +43,24 @@
         </tbody>
     </table>
 
+    <h4>Bandos</h4>
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Distância</th>
+            <th>Criaturas</th>
+            <th>Ação</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each bandos}}
+            {{> bando}}
+        {{/each}}
+        </tbody>
+    </table>
+
     <h4>Receitas</h4>
 
     <table class="ui celled table">
@@ -46,6 +68,8 @@
         <tr>
             <th>Item</th>
             <th>Itens</th>
+            <th>Profissão</th>
+            <th>Tempo</th>
             <th>Qtd. Fabricar</th>
             <th>Ação</th>
         </tr>

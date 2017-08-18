@@ -3,15 +3,23 @@ import { Jogadores } from '../jogadores';
 import { Inventarios } from '../../inventarios/inventarios';
 import { Itens } from '../../itens/itens';
 
+import { checarUsuario } from '../../utils';
+
 Meteor.publishComposite('meuperfil', function () {
   return {
     find() {
+      checarUsuario(this);
+
       const jogador = Jogadores.findOne({userId: this.userId});
 
       if (!jogador) {
         const user = Meteor.users.findOne({_id: this.userId});
 
-        const jogadorId = Jogadores.insert({userId: this.userId, nome: user.username, localizacao: {coordinates: [0.0, 0.0]}});
+        const jogadorId = Jogadores.insert({
+          userId: this.userId,
+          nome: user.username,
+          localizacao: {coordinates: [0.0, 0.0]}
+        });
 
         Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: 'Item X'})._id});
         Inventarios.insert({jogadorId, itemId: Itens.findOne({nome: 'Item Y'})._id});

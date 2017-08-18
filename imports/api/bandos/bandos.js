@@ -41,7 +41,7 @@ const BandoSchema = new SimpleSchema({
 Bandos.helpers({
   criaturas() {
     return _.map(this._criaturas, criatura => ({
-      item: Criaturas.findOne({_id: criatura.criaturaId}),
+      criatura: Criaturas.findOne({_id: criatura.criaturaId}),
       quantidade: criatura.quantidade
     }));
   }

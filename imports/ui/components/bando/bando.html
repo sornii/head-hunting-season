@@ -1,0 +1,18 @@
+<template name="bando">
+    <tr>
+        <td>
+            {{nome}}
+        </td>
+        <td>
+            {{distancia}}
+        </td>
+        <td>
+            {{#each criaturas}}
+                {{quantidade}}x {{criatura.nome}}
+            {{/each}}
+        </td>
+        <td>
+            <button class="ui button">Ir à caçada</button>
+        </td>
+    </tr>
+</template>

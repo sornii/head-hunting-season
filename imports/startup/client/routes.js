@@ -10,6 +10,8 @@ import '../../ui/pages/home/home';
 //componentes
 import '../../ui/components/venda/venda';
 import '../../ui/components/compra/compra';
+import '../../ui/components/receita/receita';
+import '../../ui/components/bando/bando';
 
 FlowRouter.route('/', {
   name: 'home',

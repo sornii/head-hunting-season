@@ -36,3 +36,8 @@ import '../../api/receitas/receitas';
 import '../../api/receitas/methods';
 import '../../api/receitas/server/publications';
 
+// Bandos
+import '../../api/bandos/bandos';
+import '../../api/bandos/methods';
+import '../../api/bandos/server/publications';
+

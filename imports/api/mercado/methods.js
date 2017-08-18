@@ -5,6 +5,8 @@ import { Inventarios } from '../inventarios/inventarios';
 import { adicionarInventario } from '../inventarios/methods';
 import { Mercado } from './mercado';
 
+import { checarUsuario } from '../utils';
+
 export const colocarVenda = new ValidatedMethod({
   name: 'messages.colocarVenda',
   validate: new SimpleSchema({
@@ -13,9 +15,7 @@ export const colocarVenda = new ValidatedMethod({
     quantidade: {type: Number, min: 1}
   }).validator(),
   run({inventarioId, preco, quantidade}) {
-    if (!this.userId) {
-      throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
-    }
+    checarUsuario(this);
 
     const jogador = Jogadores.findOne({userId: this.userId});
     const inventario = Inventarios.findOne({_id: inventarioId, jogadorId: jogador._id});
@@ -46,9 +46,7 @@ export const comprar = new ValidatedMethod({
     quantidade: {type: Number, min: 1}
   }).validator(),
   run({mercadoId, quantidade}) {
-    if (!this.userId) {
-      throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
-    }
+    checarUsuario(this);
 
     const jogador = Jogadores.findOne({userId: this.userId});
     const mercado = Mercado.findOne({_id: mercadoId});

@@ -2,6 +2,8 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Jogadores } from '../jogadores/jogadores';
 
+import { checarUsuario } from '../utils';
+
 const schema = Jogadores.simpleSchema().schema();
 
 export const trocarNome = new ValidatedMethod({
@@ -10,9 +12,7 @@ export const trocarNome = new ValidatedMethod({
     nome: schema.nome
   }).validator(),
   run({nome}) {
-    if (!this.userId) {
-      throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
-    }
+    checarUsuario(this);
 
     const jogador = Jogadores.findOne({nome});
     if (jogador) {

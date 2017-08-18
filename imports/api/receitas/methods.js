@@ -5,6 +5,8 @@ import { Inventarios } from '../inventarios/inventarios';
 import { adicionarInventario } from '../inventarios/methods';
 import { Receitas } from './receitas';
 
+import { checarUsuario } from '../utils';
+
 export const fabricarItem = new ValidatedMethod({
   name: 'receitas.fabricarItem',
   validate: new SimpleSchema({
@@ -12,9 +14,7 @@ export const fabricarItem = new ValidatedMethod({
     quantidade: {type: Number, min: 1}
   }).validator(),
   run({receitaId, quantidade}) {
-    if (!this.userId) {
-      throw new Meteor.Error('usuario.nao.logado', 'Usuário não está logado');
-    }
+    checarUsuario(this);
 
     const receita = Receitas.findOne({_id: receitaId});
 
