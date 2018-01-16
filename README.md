@@ -11,7 +11,7 @@ O jogo terá um forte sistema de crafting, que permitirá jogadores utilizar rec
 Com um sistema de craft desenvolvido, um mercado de troca será o meio mais fácil para os jogadores conseguirem dinheiro vendendo coisas que são inúteis para ele e conseguir itens úteis.
 
 ## Temporada
-As temporadas de caçada serão a base principal da competividade, cada temporada irá ter um tempo limite para a caçada de um certo monstro. Ao final da temporada, quem tiver mais pontos ganhará recompensas.
+As temporadas de caçada serão a base principal da competividade. Cada temporada irá ter um tempo limite para a caçada de um certo monstro. Ao final da temporada, quem tiver mais pontos ganhará recompensas.
 
 ## Tecnologias a serem utilizadas
-JavaScript, Node.js, Meteor, Phaser
+JavaScript, Node.js, Meteor, Phaser.
