@@ -6,7 +6,7 @@ import { comprar } from '../../../api/mercado/methods';
 
 import './compra.html';
 
-Template.compra.onCreated(function vendaOnCreated() {
+Template.compra.onCreated(function compraOnCreated() {
   this.quantidadeComprar = new ReactiveVar();
 });
 

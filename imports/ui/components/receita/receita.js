@@ -6,8 +6,10 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { fabricarItem } from '../../../api/receitas/methods';
 
 import './receita.html';
+import HomemModal from "../homensDisponiveis/homemModal";
 
 Template.receita.onCreated(function receitaOnCreated() {
+  this.homemModal = new HomemModal();
   this.quantidadeFabricar = new ReactiveVar();
 });
 
@@ -28,6 +30,11 @@ Template.receita.events({
     const receitaId = this._id;
     const quantidade = Number(instance.quantidadeFabricar.get());
 
-    fabricarItem.call({receitaId, quantidade});
+    instance.homemModal.definir(function (homem) {
+      const homemId = homem._id;
+      fabricarItem.call({homemId, receitaId, quantidade});
+    });
+
+    instance.homemModal.mostrar();
   }
 });

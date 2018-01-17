@@ -1,0 +1,21 @@
+<template name="homensDisponiveis">
+    <div id="homensDisponiveisModal" class="ui modal">
+        <div class="header">Homens</div>
+        <div class="scrolling content">
+            <table class="ui celled table">
+                <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Profissão</th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each homens}}
+                    {{> homemDisponivel}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>

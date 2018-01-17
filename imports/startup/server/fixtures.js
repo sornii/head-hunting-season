@@ -2,6 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import { SyncedCron } from 'meteor/percolate:synced-cron';
 import { Itens } from '../../api/itens/itens';
 import { Receitas } from '../../api/receitas/receitas';
+import { Homens } from "../../api/homens/homens";
+import Profissoes from "../../api/profissoes/profissoes";
 
 Meteor.startup(() => {
   if (!Itens.findOne({nome: 'Item X'})) Itens.insert({nome: 'Item X'});
@@ -19,5 +21,7 @@ Meteor.startup(() => {
       segundos: 20
     });
   }
+
+  if (!Homens.findOne({nome: 'Homem A'})) Homens.insert({ nome: 'Homem A', _profissao: 'alquimista'});
   SyncedCron.start();
 });

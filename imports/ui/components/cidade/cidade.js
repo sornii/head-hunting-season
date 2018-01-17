@@ -8,7 +8,7 @@ import gju from 'geojson-utils';
 
 import './cidade.html';
 
-Template.cidade.onCreated(function vendaOnCreated() {
+Template.cidade.onCreated(function cidadeOnCreated() {
 
 });
 

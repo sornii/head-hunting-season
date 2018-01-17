@@ -8,7 +8,7 @@ import './bando.html';
 
 import gju from 'geojson-utils';
 
-Template.bando.onCreated(function vendaOnCreated() {
+Template.bando.onCreated(function bandoOnCreated() {
 
 });
 

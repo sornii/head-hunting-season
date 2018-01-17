@@ -42,7 +42,8 @@ Criaturas.helpers({
   itens() {
     return _.map(this._itens, item => ({
       item: Itens.findOne({_id: item.itemId}),
-      quantidade: item.quantidade
+      quantidade: item.quantidade,
+      chance: item.chance
     }));
   }
 });

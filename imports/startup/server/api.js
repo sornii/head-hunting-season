@@ -44,3 +44,11 @@ import '../../api/bandos/server/publications';
 // Cidades
 import '../../api/cidades/cidades';
 import '../../api/cidades/server/publications';
+
+// Homens
+import '../../api/homens/homens';
+import '../../api/homens/server/publications';
+
+// Trabalhos
+import '../../api/trabalhos/trabalhos';
+import '../../api/trabalhos/server/publications';

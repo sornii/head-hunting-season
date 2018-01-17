@@ -5,6 +5,7 @@ import Profissoes from '../profissoes/profissoes';
 import { Itens } from '../itens/itens';
 
 import { _ } from 'underscore';
+import moment from 'moment';
 
 export const Receitas = new Mongo.Collection('Receitas');
 
@@ -54,6 +55,9 @@ Receitas.helpers({
       item: Itens.findOne({_id: item.itemId}),
       quantidade: item.quantidade
     }));
+  },
+  duracao() {
+    return moment.duration(this.segundos, 'seconds');
   }
 });
 

@@ -1,16 +1,15 @@
 import { Meteor } from 'meteor/meteor';
-
-import { Homens } from '../homens';
-import { checarUsuario } from '../../utils';
+import { checarUsuario } from "../../utils";
 import { Jogadores } from "../../jogadores/jogadores";
+import { Trabalhos } from "../trabalhos";
 
-Meteor.publishComposite('homens.contratados', function () {
+Meteor.publishComposite('trabalhos.correntes', function () {
   return {
     find() {
       checarUsuario(this);
 
       const jogador = Jogadores.findOne({ userId: this.userId });
-      return Homens.find({ jogadorId: jogador._id });
+      return Trabalhos.find({ jogadorId: jogador._id, finalizado: false });
     }
   };
 });

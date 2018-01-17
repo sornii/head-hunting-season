@@ -43,6 +43,40 @@
         </tbody>
     </table>
 
+    <h4>Homens</h4>
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Profissão</th>
+            <th>Ocupado</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each homens}}
+            {{> homem}}
+        {{/each}}
+        </tbody>
+    </table>
+
+    <h4>Trabalhos</h4>
+
+    <table class="ui celled table">
+        <thead>
+        <tr>
+            <th>Homem</th>
+            <th>Receita</th>
+            <th>Tempo</th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each trabalhos}}
+            {{> trabalho}}
+        {{/each}}
+        </tbody>
+    </table>
+
     <h4>Cidades</h4>
 
     <table class="ui celled table">
@@ -120,5 +154,7 @@
         {{/each}}
         </tbody>
     </table>
+
+    {{> homensDisponiveis}}
 
 </template>
