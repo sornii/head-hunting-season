@@ -40,6 +40,8 @@ export const fabricarItem = new ValidatedMethod({
       throw new Meteor.error('homem.ocupado', 'Homem ocupado');
     }
 
+    Homens.update({ _id: homemId }, { $set: { ocupado: true } });
+
     const itensReceitaInventario = [];
     receita._itens.forEach(itemReceita => {
       itemReceita.quantidade = itemReceita.quantidade * quantidade;
@@ -63,7 +65,6 @@ export const fabricarItem = new ValidatedMethod({
       }
     });
 
-    Homens.update({ _id: homemId }, { $set: { ocupado: true } });
     Trabalhos.insert({ jogadorId, dataInicio, homemId, receitaId, quantidade });
   }
 });

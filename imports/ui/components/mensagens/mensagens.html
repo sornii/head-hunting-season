@@ -1,0 +1,20 @@
+<template name="mensagens">
+    <div id="mensagensModal" class="ui modal">
+        <div class="header">Mensagens</div>
+        <div class="scrolling content">
+            <table class="ui celled table">
+                <thead>
+                <tr>
+                    <th>Remetente</th>
+                    <th>Tópico</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each mensagens}}
+                    {{> mensagem}}
+                {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>
