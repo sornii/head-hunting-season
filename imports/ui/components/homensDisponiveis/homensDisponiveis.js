@@ -6,9 +6,14 @@ import './homensDisponiveis.html';
 
 import './homemDisponivel/homemDisponivel';
 import { Homens } from "../../../api/homens/homens";
+import HomemModal from "./homemModal";
 
 Template.homensDisponiveis.onCreated(function homensDisponiveisOnCreated() {
 
+});
+
+Template.homensDisponiveis.onRendered(function homensDisponiveisOnRendered() {
+  this.homemModal = new HomemModal();
 });
 
 Template.homensDisponiveis.helpers({

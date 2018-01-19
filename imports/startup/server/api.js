@@ -52,3 +52,7 @@ import '../../api/homens/server/publications';
 // Trabalhos
 import '../../api/trabalhos/trabalhos';
 import '../../api/trabalhos/server/publications';
+
+// Mensagens
+import '../../api/mensagens/mensagens';
+import '../../api/mensagens/server/publications';

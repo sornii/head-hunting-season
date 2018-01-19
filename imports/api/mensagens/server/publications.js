@@ -4,7 +4,7 @@ import { Mensagens } from '../mensagens';
 import { checarUsuario } from '../../utils';
 import { Jogadores } from "../../jogadores/jogadores";
 
-Meteor.publishComposite('homens.contratados', function () {
+Meteor.publishComposite('mensagens', function () {
   return {
     find() {
       checarUsuario(this);

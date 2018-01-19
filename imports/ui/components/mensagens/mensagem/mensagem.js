@@ -13,5 +13,10 @@ Template.mensagem.helpers({
 });
 
 Template.mensagem.events({
-
+  'click .ler' (event, instance) {
+    event.preventDefault();
+  },
+  'click .excluir' (event, instance) {
+    event.preventDefault();
+  }
 });

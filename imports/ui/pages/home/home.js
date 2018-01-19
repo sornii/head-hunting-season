@@ -13,6 +13,8 @@ import { Receitas } from '../../../api/receitas/receitas';
 import { Bandos } from '../../../api/bandos/bandos';
 import { Cidades } from '../../../api/cidades/cidades';
 import { Homens } from '../../../api/homens/homens';
+import { Trabalhos } from "../../../api/trabalhos/trabalhos";
+import { Mensagens } from "../../../api/mensagens/mensagens";
 
 import '../../components/venda/venda';
 import '../../components/compra/compra';
@@ -22,9 +24,10 @@ import '../../components/cidade/cidade';
 import '../../components/homem/homem';
 import '../../components/homensDisponiveis/homensDisponiveis';
 import '../../components/trabalho/trabalho';
+import '../../components/mensagens/mensagensModal';
+import '../../components/mensagens/mensagensIcon/mensagensIcon';
 
 import './home.html';
-import { Trabalhos } from "../../../api/trabalhos/trabalhos";
 
 Template.home.onRendered(function homeOnRendered() {
 
@@ -47,6 +50,7 @@ Template.home.onCreated(function homeOnCreated() {
   this.subscribe('trabalhos.correntes');
   this.subscribe('bandos.proximos');
   this.subscribe('cidades.proximos');
+  this.subscribe('mensagens');
 });
 
 Template.home.helpers({
@@ -70,6 +74,9 @@ Template.home.helpers({
   },
   trabalhos() {
     return Trabalhos.find({});
+  },
+  mensagens() {
+    return Mensagens.find({});
   },
   idGerado() {
     return Template.instance().idGerado.get();

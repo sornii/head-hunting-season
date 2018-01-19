@@ -1,33 +1,35 @@
 let homemModal = null;
 
 class HomemModal {
-  constructor() {
+  constructor(componente) {
     if (!homemModal) {
       homemModal = this;
     }
 
-    /*this.params = null;*/
-    this.componente = $('#homensDisponiveisModal');
+    if (!componente) {
+      componente = '#homensDisponiveisModal';
+    }
+
+    this.componente = componente;
     this.funcao = null;
 
     return homemModal;
   }
 
   mostrar() {
-    this.componente.modal('show');
+    $(this.componente).modal('show');
   }
 
-  identificar(seletor) {
-    this.componente = $(seletor);
+  identificar(componente) {
+    this.componente = componente;
   }
 
-  definir(funcao/*, params*/) {
+  definir(funcao) {
     this.funcao = funcao;
-    /*this.params = params;*/
   }
 
   aplicar(homem) {
-    this.funcao(homem/*, this.params*/);
+    this.funcao(homem);
     this.funcao = null;
   }
 }

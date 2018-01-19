@@ -24,6 +24,10 @@ const MensagemSchema = new SimpleSchema({
   },
   conteudo: {
     type: String
+  },
+  lida: {
+    type: Boolean,
+    defaultValue: false
   }
 });
 
