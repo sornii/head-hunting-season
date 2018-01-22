@@ -1,21 +1,23 @@
-let mensagemModal = null;
+let mensagemConteudoModal = null;
 
-class MensagemModal {
+class MensagemConteudoModal {
   constructor(componente) {
-    if (!mensagemModal) {
-      mensagemModal = this;
+    if (!mensagemConteudoModal) {
+      mensagemConteudoModal = this;
 
       if (!componente) {
         componente = '#mensagemConteudoModal';
       }
 
       this.componente = componente;
+      this.mensagem = new ReactiveVar({});
     }
 
-    return mensagemModal;
+    return mensagemConteudoModal;
   }
 
-  mostrar() {
+  mostrar(mensagem) {
+    this.mensagem.set(mensagem);
     $(this.componente).modal('show');
   }
 
@@ -24,4 +26,4 @@ class MensagemModal {
   }
 }
 
-export default MensagemModal;
+export default MensagemConteudoModal;

@@ -6,6 +6,8 @@ import { Mensagens } from "../../../api/mensagens/mensagens";
 
 import './mensagem/mensagem';
 import './mensagensModal.html';
+import './mensagemConteudo/mensagemConteudo';
+
 import MensagemModal from "./mensagemModal";
 
 Template.mensagensModal.onCreated(function mensagensModalOnCreated() {

@@ -55,4 +55,5 @@ import '../../api/trabalhos/server/publications';
 
 // Mensagens
 import '../../api/mensagens/mensagens';
+import '../../api/mensagens/methods';
 import '../../api/mensagens/server/publications';
